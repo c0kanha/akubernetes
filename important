@@ -3,3 +3,6 @@ gio mime x-scheme-handler/magnet
 
 To set Deluge as the default program for magnet links, run:
 gio mime x-scheme-handler/magnet deluge.desktop
+
+sudo apt-get install sqlite3
+sudo apt-get install sqlitebrowser
