@@ -1,0 +1,22 @@
+sudo apt-get install python3-pip
+python -m pip install --upgrade pip
+
+pip3 install virtualenv
+
+cd /share
+
+virtualenv -p python3 myenv
+OR
+python3 -m venv myenv
+
+source myenv/bin/activate
+pip freeze
+pip install django
+pip freeze
+django-admin startproject mysite
+cd mysite
+cd mysite
+sudo nano settings.py
+ALLOWED_HOSTS=[*]
+python manage.py runserver 0.0.0.0:8000
+deactivate
