@@ -1,19 +1,30 @@
+===> to install pip
 sudo apt-get install python3-pip
+
+===> to upgrade pip
 python -m pip install --upgrade pip
 
+===> to install virtualenv
 pip3 install virtualenv
 
+===> working and sharable directory
 mkdir /share
 cd /share
 
+===> create virtual environment
 virtualenv -p python3 myenv
 OR
 python3 -m venv myenv
 
+===> activate virtual environment
 source /share/myenv/bin/activate
 pip freeze
+
+===> install django in virtual environment
 pip install django
 pip freeze
+
+===> create django project
 django-admin startproject mysite
 cd mysite
 cd mysite
@@ -23,3 +34,9 @@ ALLOWED_HOSTS = ['*']
 python /share/mysite/manage.py runserver 0.0.0.0:8000
 
 deactivate
+
+===> syncup db changes
+python /share/mysite/manage.py migrate
+
+===> create superuser to login admin page
+python /share/mysite/manage.py createsuperuser
