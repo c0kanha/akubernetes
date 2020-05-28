@@ -1,0 +1,43 @@
+
+Step 1: login to the server
+
+Step 2: activate the virtual environment
+source /share/myenv/bin/activate
+
+step 3: change directory to project folder
+cd /share/mysite/
+
+step 4: run manage.py and create firstApp
+python /share/mysite/manage.py startapp firstApp
+
+step 5: edit settings.py of project and add firstApp
+vi /share/mysite/mysite/settings.py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'firstApp',
+]
+
+step 6: create view in Views folder of firstAPP
+vi /share/mysite/firstApp/views.py
+#import
+from django.http import HttpResponse
+# Create your views here.
+def display(request):
+  return HttpResPonse("<h1>This is my first APP!!</h1>")
+
+step 7: Map view to urls in the main project folder
+vi /share/mysite/mysite/urls.py
+from firstApp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello/', views.display)
+]
+
+step 8: start the django server
+python /share/mysite/manage.py runserver 0.0.0.0:8000
