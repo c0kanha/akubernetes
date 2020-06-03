@@ -25,6 +25,7 @@ pip install django
 pip freeze
 
 ===> create django project
+cd /share
 django-admin startproject mysite
 cd mysite
 cd mysite
@@ -40,3 +41,7 @@ python /share/mysite/manage.py migrate
 
 ===> create superuser to login admin page
 python /share/mysite/manage.py createsuperuser
+
+==> create app
+cd /share/mysite
+python manage.py startapp myapp
