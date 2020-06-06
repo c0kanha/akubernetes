@@ -1,0 +1,5 @@
+docker
+docker version
+docker info
+docker container run --publish 80:80 --detach --name webhost nginx
+docker container logs webhost
