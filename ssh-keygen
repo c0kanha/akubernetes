@@ -1,0 +1,41 @@
+ssh-keygen -t rsa -b 4096
+scp /home/pi/.ssh/id_rsa.pub  pi@192.168.1.11:~/.ssh/pi3_id_rsa.pub
+ssh pi@192.168.1.11
+cd .ssh
+cat pi3_id_rsa.pub >> authorized_keys
+cat authorized_keys
+rm pi3_id_rsa.pub
+
+sudo apt update
+sudo apt install deluge -y
+
+curl -sSL https://get.docker.com | sh
+sudo usermod -aG docker pi
+
+docker run hello-world
+
+sudo apt-get install libffi-dev libssl-dev -y
+sudo apt-get install -y python python-pip
+sudo apt-get remove python-configparser -y
+sudo pip install docker-compose
+
+docker pull michaelmiklis/rpi-monitor
+docker run --device=/dev/vchiq 
+           --device=/dev/vcsm 
+           --volume=/opt/vc:/opt/vc 
+           --volume=/boot:/boot 
+           --volume=/sys:/dockerhost/sys:ro 
+           --volume=/etc:/dockerhost/etc:ro 
+           --volume=/proc:/dockerhost/proc:ro 
+           --volume=/usr/lib:/dockerhost/usr/lib:ro 
+           -p=8888:8888 
+           --name="rpi-monitor" 
+           -d  michaelmiklis/rpi-monitor:latest
+           
+curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
+sudo systemctl status k3s
+
+sudo cat /var/lib/rancher/k3s/server/node-token
+
+curl -sfL https://get.k3s.io | K3S_URL=https://192.168.1.11:6443 
+K3S_TOKEN=K10e4fb5be672751b3fe64c6b6b2884a635a29cb8f4457d73fc9f0370cea51837f0::server:cd81be76aeb40c1a93b72ad0b72a287c sh -
