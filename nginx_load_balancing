@@ -1,0 +1,49 @@
+install nginx
+sudo vi /etc/nginx/nginx.conf
+----------
+events{
+}
+
+http{
+  upstream all{
+    server 192.168.1.7:4444;
+    server 192.168.1.7:3333;
+    server 192.168.1.7:2222;
+  }
+
+  server {
+    listen 8080;
+    location / {
+      proxy_pass http://all/;
+    }
+  }
+}
+sudo /etc/init.d/nginx reload
+------------------------------
+
+intall php
+----------
+mkdir 2222
+cd 2222
+vi index.php
+<?php
+  echo "2222"
+?>
+php -S 0.0.0.0:2222
+----------
+mkdir 3333
+cd 3333
+vi index.php
+<?php
+  echo "3333"
+?>
+php -S 0.0.0.0:3333
+
+----------
+mkdir 4444
+cd 4444
+vi index.php
+<?php
+  echo "4444"
+?>
+php -S 0.0.0.0:4444
