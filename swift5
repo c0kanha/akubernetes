@@ -1,4 +1,0 @@
-sudo apt update
-curl -s https://packagecloud.io/install/repositories/swift-arm/release/script.deb.sh | sudo bash
-sudo apt update
-sudo apt-get install swift5
