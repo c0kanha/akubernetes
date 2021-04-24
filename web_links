@@ -1,1 +1,2 @@
 https://flightaware.com/adsb/piaware/install
+  cat /var/cache/piaware/feeder_id
