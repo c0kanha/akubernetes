@@ -2,3 +2,5 @@ https://flightaware.com/adsb/piaware/install
   cat /var/cache/piaware/feeder_id
 
 piaware-config feeder-id 12345678-1234-1234-1234-123456789abc
+
+https://flightaware.com/adsb/piaware/claim
