@@ -1,5 +1,6 @@
 ssh-keygen -t rsa -b 4096
 scp /home/pi/.ssh/id_rsa.pub  pi@192.168.1.11:~/.ssh/pi3_id_rsa.pub
+scp /c/Users/hkand/.ssh/id_rsa.pub pi@192.168.0.140:~/.ssh/authorized_keys
 ssh pi@192.168.1.11
 cd .ssh
 cat pi3_id_rsa.pub >> authorized_keys
