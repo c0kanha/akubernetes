@@ -1,0 +1,28 @@
+# Define the possible values for CYCLE_NO, FILE_NAME, and COUNT_TYPE
+CYCLE_NO_VALUES = range(1, 32)
+FILE_NAME_VALUES = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']
+COUNT_TYPE_VALUES = ['CUST', 'ACCT', 'MTN']
+
+# Sample data - you can replace this with your actual data
+counts = {
+    (1, 'A1', 'CUST'): 10,
+    (1, 'A1', 'ACCT'): 20,
+    (1, 'A1', 'MTN'): 30,
+    # Add more counts for other combinations...
+}
+
+# Function to generate COUNT report for each cycle
+def generate_count_report():
+    for cycle in CYCLE_NO_VALUES:
+        print(f'COUNT report for Cycle {cycle}:')
+        print('\t' + '\t'.join(COUNT_TYPE_VALUES))
+        for file_name in FILE_NAME_VALUES:
+            print(file_name, end='\t')
+            for count_type in COUNT_TYPE_VALUES:
+                count = counts.get((cycle, file_name, count_type), 0)
+                print(count, end='\t')
+            print()
+        print()
+
+# Generate the COUNT report
+generate_count_report()
