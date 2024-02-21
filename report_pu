@@ -26,3 +26,36 @@ def generate_count_report():
 
 # Generate the COUNT report
 generate_count_report()
+
+
+//SORTIN    DD *             <- Input dataset containing your data
+CYCLE_NO,FILE_NAME,COUNT_TYPE,COUNT
+1,A1,CUST,10
+1,A1,ACCT,20
+1,A1,MTN,30
+1,A2,CUST,15
+1,A2,ACCT,25
+1,A2,MTN,35
+...                            <- Add more data rows as needed
+/*
+//SORTOUT   DD SYSOUT=*      <- Output dataset containing the COUNT report
+//SYSIN     DD *
+  SORT FIELDS=(1,9,CH,A,11,10,CH,A)     <- Sort by CYCLE_NO, then FILE_NAME
+  OUTFIL HEADER1=('FILE_NAME',1X,'CUST',5X,'ACCT',5X,'MTN'),
+         HEADER2=('========',1X,'====',5X,'====',5X,'===')
+  OUTFIL FNAMES=SORTOUT,REMOVECC,
+         TRAILER1=('========','========','========'),
+         TRAILER2=('TOTAL:',TOT=(2,5,ZD),TOT=(7,5,ZD),TOT=(12,5,ZD)),
+         SECTIONS=(1,10,
+                   TRAILER3=(TOT=(12,5,ZD)),
+                   HEADER3=('CYCLE_NO=',1,10)),
+         SECTIONS=(11,10)
+  OUTFIL FNAMES=SORTOUT,REMOVECC,
+         IFTHEN=(WHEN=INIT,BUILD=(1,10,/,11,10,/,21,5)),
+         IFTHEN=(WHEN=(21,1,CH,EQ,C'C'),
+                 OVERLAY=(1:11,10)),
+         IFTHEN=(WHEN=(21,1,CH,EQ,C'A'),
+                 OVERLAY=(1:22,10)),
+         IFTHEN=(WHEN=(21,1,CH,EQ,C'M'),
+                 OVERLAY=(1:33,10))
+/*
